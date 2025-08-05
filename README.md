@@ -284,3 +284,65 @@ void capturePhotoSaveSpiffs(void) {
 2.  **Upload:** Connect your ESP32-CAM to the FTDI programmer as described earlier (with GPIO 0 connected to GND). Select the correct COM port and click the upload button. You may need to press the onboard reset button when you see "Connecting........" in the debug window.
 3.  **Run:** After a successful upload, disconnect the wire between GPIO 0 and GND. Open the Serial Monitor at a baud rate of 115200 and press the reset button. The ESP32-CAM will connect to your WiFi and print its IP address.
 4.  **Access the Web Server:** Open a web browser and enter the IP address shown in the Serial Monitor. You will see the web interface, ready to take and display photos.
+
+Excellent question. This is a very common hurdle when working with ESP32 web servers for the first time, and the solution is straightforward.
+
+The error message `Compilation error: ESPAsyncWebServer.h: No such file or directory` means that the Arduino IDE cannot find the necessary library to understand what `ESPAsyncWebServer` is.
+
+Unlike standard libraries like `WiFi.h`, the `ESPAsyncWebServer` library is not included with the ESP32 board package by default. You need to install it manually. Furthermore, `ESPAsyncWebServer` depends on another library called `AsyncTCP`, which also needs to be installed.
+
+Here is the step-by-step guide to fix this issue.
+
+### Solution: Install the Required Libraries
+
+You need to install two libraries:
+
+1.  **AsyncTCP**
+2.  **ESPAsyncWebServer**
+
+The easiest way to do this is through the Arduino IDE's Library Manager.
+
+#### Step 1: Open the Library Manager
+
+In your Arduino IDE, go to **Sketch** -> **Include Library** -> **Manage Libraries...**
+
+
+
+This will open the Library Manager window.
+
+#### Step 2: Install the AsyncTCP Library
+
+1.  In the search bar of the Library Manager, type `AsyncTCP`.
+2.  Find the library by **Hristo Gochkov**.
+3.  Click the "Install" button.
+
+
+
+#### Step 3: Install the ESPAsyncWebServer Library
+
+1.  Now, in the same search bar, type `ESPAsyncWebServer`.
+2.  Find the library, also by **Hristo Gochkov**.
+3.  Click the "Install" button.
+
+![Installing ESPAsyncWebServer Library](https.i.imgur.com/eBfJbMh.png)
+
+### Alternative: Manual Installation
+
+If for some reason you cannot find the libraries in the manager, you can install them manually from their GitHub repositories.
+
+1.  **Download the Libraries:**
+    *   **AsyncTCP:** [https://github.com/me-no-dev/AsyncTCP](https://github.com/me-no-dev/AsyncTCP)
+    *   **ESPAsyncWebServer:** [https://github.com/me-no-dev/ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
+
+    On each page, click the green "Code" button and then "Download ZIP".
+
+2.  **Install in Arduino IDE:**
+    *   In the Arduino IDE, go to **Sketch** -> **Include Library** -> **Add .ZIP Library...**
+    *   Navigate to where you downloaded the ZIP files and select one.
+    *   Repeat the process for the second ZIP file.
+
+### Final Step
+
+After installing the libraries using either method, **close and restart your Arduino IDE**. This ensures that the IDE correctly indexes the new libraries.
+
+Once you have restarted the IDE, try compiling your sketch again. The "No such file or directory" error should now be resolved, and your code should compile successfully.
