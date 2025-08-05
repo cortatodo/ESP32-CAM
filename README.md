@@ -1,12 +1,6 @@
 # ESP32-CAM
 Experimento con camara esp32 hecho con IA
 
-This sketch will allow you to capture new photos, view the most recent one, and even rotate it, all from a web browser on your smartphone or computer.
-Project Overview
-This project turns your ESP32-CAM into a mini web server. When you connect to its IP address in your local network, it will serve a web page with the following features:
-
-Of course! As an expert in Arduino sketches and the ESP32-CAM, I can provide you with a comprehensive and well-documented sketch to create a web interface for handling pictures. This sketch will allow you to capture new photos, view the most recent one, and even rotate it, all from a web browser on your smartphone or computer.
-
 ### Project Overview
 
 This project turns your ESP32-CAM into a mini web server. When you connect to its IP address in your local network, it will serve a web page with the following features:
@@ -285,7 +279,6 @@ void capturePhotoSaveSpiffs(void) {
 3.  **Run:** After a successful upload, disconnect the wire between GPIO 0 and GND. Open the Serial Monitor at a baud rate of 115200 and press the reset button. The ESP32-CAM will connect to your WiFi and print its IP address.
 4.  **Access the Web Server:** Open a web browser and enter the IP address shown in the Serial Monitor. You will see the web interface, ready to take and display photos.
 
-Excellent question. This is a very common hurdle when working with ESP32 web servers for the first time, and the solution is straightforward.
 
 The error message `Compilation error: ESPAsyncWebServer.h: No such file or directory` means that the Arduino IDE cannot find the necessary library to understand what `ESPAsyncWebServer` is.
 
